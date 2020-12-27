@@ -1,12 +1,10 @@
-import { Container } from "typedi";
-import config from "../config";
+import mongooseLoader from './mongoose'
+import containerLoader from './dependencyInjector'
 
-export default ({ models }: { models: { name: string; model: any }[] }) => {
-  try {
-    models.forEach((m) => {
-      Container.set(m.name, m.model);
-    })
-  } catch (error) {
-    throw error;
-  }
-};
+export default async () => {
+
+  await mongooseLoader()
+
+  
+
+}
