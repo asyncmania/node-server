@@ -5,22 +5,17 @@ import Server from './loaders/server'
 import { TodoRepository } from './repositories/TodoRepository'
 import { Service, Inject, Container } from "typedi";
 import { TodosController } from './controllers/TodosController';
+import loaders from './loaders'
 
 
 const app = express()
 
-const server: Server = new Server(app)
-
-
 
 app.listen(config.port, async () => {
-
-  await require('./loaders').default()
-
-
   
+  await loaders()
+  const server: Server = new Server(app)
 
- 
 
   console.log(`
   ################################################

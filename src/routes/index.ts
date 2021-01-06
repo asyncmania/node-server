@@ -3,6 +3,6 @@ import todosRoute from './todoRoute'
 
 export default () => {
   const app = Router()
-   todosRoute(app)
+  todosRoute(app)
   return app
 }

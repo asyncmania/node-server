@@ -7,6 +7,7 @@ import routes from '../routes';
 export default class Server {
   
   constructor(app: Application){
+    console.log('sorry')
     this.middlewares(app)
   }
 
