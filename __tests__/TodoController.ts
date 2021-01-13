@@ -1,6 +1,5 @@
 import { TodosController } from "../src/controllers/TodosController";
-import { ITodo } from "../src/interfaces/ITodo";
-import { MockTodoRepos } from "../src/mocks/MockTodosRepo";
+import { MockTodoRepos } from "../src/__mocks__/MockTodosRepo";
 
 const mockResponse = () => {
   let res: any = {};
@@ -13,6 +12,7 @@ const mockResponse = () => {
 
 
 describe("TodosController", () => {
+
   let todosController: TodosController;
   let res;
 
