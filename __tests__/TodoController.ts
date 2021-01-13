@@ -18,8 +18,9 @@ describe("TodosController", () => {
 
   beforeAll(() => {
     todosController = new TodosController(new MockTodoRepos());
-    res = mockResponse();
   });
+
+  beforeEach(() =>  res = mockResponse())
 
   test("create todo", async () => {
     const todo = {
