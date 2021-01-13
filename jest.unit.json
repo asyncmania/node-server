@@ -1,0 +1,6 @@
+{
+  "preset": "ts-jest",
+  "testMatch": [
+    "**/__tests__/**/*.[jt]s?(x)"
+  ]
+}

@@ -1,18 +1,34 @@
-import { Service } from 'typedi';
-import {NextFunction, Request, Response} from 'express'
-import { TodoRepository } from '../repositories/TodoRepository';
 
+import { Inject, Service } from "typedi";
+import { NextFunction, Request, Response } from "express";
+import { ITodoRepository } from '../repositories/TodoRepository';
+//import { TodoRepository } from "../repositories/TodoRepository";
 
-@Service()
+//@Service()
 export class TodosController {
 
-  constructor(private todoRepo: TodoRepository) {}
+  /* @Inject()
+  private todoRepository: TodoRepository */
 
-  async create(req: Request, res: Response, next: NextFunction): Promise<void>{
-    const a = await Promise.resolve(2)
-    res.send({
-     a
-    })
+  private todoRepository: ITodoRepository
+
+  constructor( todoRepository: ITodoRepository){
+    this.todoRepository = todoRepository
   }
 
+  async create(req: Request, res: Response, next: NextFunction): Promise<void> {
+    const _todo = req.body
+    const todo = await this.todoRepository.createTodo(_todo);
+    res.status(200).json(todo)
+  }
+
+  async getAll(req: Request, res: Response, next: NextFunction): Promise<void> {
+    const todos = await this.todoRepository.findAll()
+    res.send({todos})
+  }
+
+  async getOne(req: Request, res: Response, next: NextFunction): Promise<void> {
+      const todo = await this.todoRepository.findById(req.params.id)
+      res.send(todo)
+  }
 }

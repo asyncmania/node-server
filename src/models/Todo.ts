@@ -3,8 +3,14 @@ import { ITodo } from "../interfaces/ITodo";
 
 const Todo = new mongoose.Schema(
   {
-    title: String,
-    description: String,
+    title:{
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    }
   },
   { timestamps: true }
 );

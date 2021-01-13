@@ -1,3 +1,4 @@
+import 'reflect-metadata';  
 import { Application } from "express";
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -7,7 +8,6 @@ import routes from '../routes';
 export default class Server {
   
   constructor(app: Application){
-    console.log('sorry')
     this.middlewares(app)
   }
 
