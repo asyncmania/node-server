@@ -1,18 +1,17 @@
 import { TodosController } from "../src/controllers/TodosController";
 import { MockTodoRepos } from "../src/__mocks__/MockTodosRepo";
+import { NextFunction, Request, Response } from "express";
+import { ITodo } from "../src/interfaces/ITodo";
 
 const mockResponse = () => {
-  let res: any = {};
+  const res = {} as Response
   res.status = jest.fn().mockReturnValue(res);
   res.json = jest.fn().mockReturnValue(res);
   res.send = jest.fn().mockReturnValue(res);
-  return res;
+  return res 
 };
 
-
-
 describe("TodosController", () => {
-
   let todosController: TodosController;
   let res;
 
@@ -20,7 +19,7 @@ describe("TodosController", () => {
     todosController = new TodosController(new MockTodoRepos());
   });
 
-  beforeEach(() =>  res = mockResponse())
+  beforeEach(() => (res = mockResponse()));
 
   test("create todo", async () => {
     const todo = {
@@ -29,10 +28,10 @@ describe("TodosController", () => {
       description: "some description",
     };
 
-    const mockRequest = (todo) => {
-      let req: any = {};
-      req.body = todo;
-      return req;
+    const mockRequest = (todo: ITodo) => {
+      return {
+        body: todo,
+      } as Request;
     };
 
     const req = mockRequest(todo);
@@ -48,22 +47,22 @@ describe("TodosController", () => {
   });
 
   test("find a todo by id", async () => {
-
+    
     const mockRequest = (id: string) => {
-      let req: any = {};
+      const req = {} as Request
       req.params = {}
       req.params.id = id
       return req;
     };
 
-    const req = mockRequest('rskdeie')
+    const req = mockRequest("rskdeie");
 
-    await todosController.getOne(req, res, null)
+    await todosController.getOne(req, res, null);
 
     expect(res.send).toHaveBeenCalledWith({
       _id: "rskdeie",
       title: "some title again",
       description: "some description now",
-    })
-  })
+    });
+  });
 });

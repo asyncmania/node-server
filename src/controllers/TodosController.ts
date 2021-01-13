@@ -1,10 +1,9 @@
 
-import { Inject, Service } from "typedi";
 import { NextFunction, Request, Response } from "express";
 import { ITodoRepository } from '../repositories/TodoRepository';
-//import { TodoRepository } from "../repositories/TodoRepository";
 
-//@Service()
+
+
 export class TodosController {
 
   /* @Inject()
