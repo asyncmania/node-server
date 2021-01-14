@@ -4,11 +4,11 @@ import { NextFunction, Request, Response } from "express";
 import { ITodo } from "../src/interfaces/ITodo";
 
 const mockResponse = () => {
-  const res = {} as Response
+  const res = {} as Response;
   res.status = jest.fn().mockReturnValue(res);
   res.json = jest.fn().mockReturnValue(res);
   res.send = jest.fn().mockReturnValue(res);
-  return res 
+  return res;
 };
 
 describe("TodosController", () => {
@@ -21,7 +21,7 @@ describe("TodosController", () => {
 
   beforeEach(() => (res = mockResponse()));
 
-  test("create todo", async () => {
+  test("creating a Todo", async () => {
     const todo = {
       _id: "abcd",
       title: "some title",
@@ -41,17 +41,16 @@ describe("TodosController", () => {
     expect(res.json).toHaveBeenCalledWith(todo);
   });
 
-  test("get all Todos", async () => {
+  test("getting a list od all Todos", async () => {
     await todosController.getAll(null, res, null);
     expect(res.send).toHaveBeenCalledWith({ todos: [] });
   });
 
-  test("find a todo by id", async () => {
-    
+  test("finding a Todo by its id", async () => {
     const mockRequest = (id: string) => {
-      const req = {} as Request
-      req.params = {}
-      req.params.id = id
+      const req = {} as Request;
+      req.params = {};
+      req.params.id = id;
       return req;
     };
 
