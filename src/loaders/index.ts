@@ -1,5 +1,6 @@
 import mongooseLoader from './mongoose'
 import containerLoader from './dependencyInjector'
+import Todo from '../models/Todo'
 
 export default async () => {
 
@@ -9,7 +10,7 @@ export default async () => {
 
    const todoModel = {
     name: 'todoModel',
-    model: require('../models/Todo').default
+    model: Todo
   };
 
    await containerLoader({
